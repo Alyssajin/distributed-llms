@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ocr-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=9000
+      - RUN_MODE=api
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./tmp:/tmp/ocr_service
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ocr-network
+
+networks:
+  ocr-network:
+    driver: bridge
