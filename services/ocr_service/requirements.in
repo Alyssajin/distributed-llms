@@ -18,3 +18,4 @@ python-multipart
 redis
 pymongo
 dnspython
+python-dotenv

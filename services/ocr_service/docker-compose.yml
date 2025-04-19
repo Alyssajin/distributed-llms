@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ocr-service:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
+      - MONGO_DB_NAME=${MONGO_DB_NAME:-ocr_service}
+      - MONGO_COLLECTION_NAME=${MONGO_COLLECTION_NAME:-documents}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PORT=8000
+    volumes:
+      - ./output:/app/output
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis-data:
