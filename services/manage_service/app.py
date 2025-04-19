@@ -10,10 +10,11 @@ import json
 import logging
 import urllib.parse
 import base64
-import tempfile
+
 
 import chalice
 from chalice import CORSConfig
+from magic_pdf.data.data_reader_writer import S3DataReader, S3DataWriter
 
 app = chalice.Chalice(app_name="pdf-extract-service")
 app.debug = True  # Set this to False for production use.
@@ -37,6 +38,7 @@ SECRET_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "test")
 ENDPOINT_URL = os.environ.get("S3_ENDPOINT_URL", "https://localhost.localstack.cloud:4566")
 OUTPUT_PREFIX = os.environ.get("S3_OUTPUT_PREFIX", "pdf-extract-output")
 IMAGE_PREFIX = os.environ.get("S3_IMAGE_PREFIX", f"{OUTPUT_PREFIX}/images")
+    
 
 # Initialize S3 readers and writers
 reader = S3DataReader(OUTPUT_PREFIX, BUCKET_NAME, ACCESS_KEY, SECRET_KEY, ENDPOINT_URL)

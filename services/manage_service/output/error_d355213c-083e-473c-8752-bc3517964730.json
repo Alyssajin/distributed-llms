@@ -1,0 +1,7 @@
+{
+  "file_id": "d355213c-083e-473c-8752-bc3517964730",
+  "filename": "A new approach for fine-tuning sentence transformers for intent classification and out-of-scope detection.pdf",
+  "status": "failed",
+  "error": "'function' object has no attribute 'write'",
+  "processed_at": "2025-04-18T22:18:34.886970"
+}
