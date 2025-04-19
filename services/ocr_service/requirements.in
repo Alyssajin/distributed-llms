@@ -11,8 +11,10 @@ pyclipper
 shapely
 dill
 boto3
-uuid
 requests
 fastapi
 uvicorn
 python-multipart
+redis
+pymongo
+dnspython
