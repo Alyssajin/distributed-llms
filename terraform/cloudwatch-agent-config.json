@@ -9,12 +9,12 @@
           "collect_list": [
             {
               "file_path": "/var/log/messages",
-              "log_group_name": "dsllms-system-logs",
+              "log_group_name": "ocr-system-logs",
               "log_stream_name": "{instance_id}-messages"
             },
             {
               "file_path": "/home/ec2-user/ocr-service/output/*.json",
-              "log_group_name": "dsllms-ocr-errors",
+              "log_group_name": "ocr-ocr-errors",
               "log_stream_name": "{instance_id}-ocr-errors"
             }
           ]

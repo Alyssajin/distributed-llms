@@ -10,7 +10,7 @@ packer {
 # ------------------------------------------------------------------------------
 # Source Configuration (Amazon EBS)
 # ------------------------------------------------------------------------------
-source "amazon-ebs" "dsllms_with_cloudwatch" {
+source "amazon-ebs" "ocr_with_cloudwatch" {
   region  = "us-west-2"
 
   # We'll use a filter to pick the latest Amazon Linux 2 AMI
@@ -26,11 +26,11 @@ source "amazon-ebs" "dsllms_with_cloudwatch" {
 
   instance_type    = "t2.large"
   ssh_username     = "ec2-user"
-  ami_name         = "dsllms-with-cloudwatch-{{timestamp}}"
+  ami_name         = "ocr-with-cloudwatch-{{timestamp}}"
   ami_description  = "Pre-baked AMI with OCR service, Docker and CloudWatch agent"
 
   tags = {
-    Name = "dsllms-with-cloudwatch"
+    Name = "ocr-with-cloudwatch"
   }
 }
 
@@ -38,9 +38,9 @@ source "amazon-ebs" "dsllms_with_cloudwatch" {
 # Build Block: Provisioners
 # ------------------------------------------------------------------------------
 build {
-  name    = "build-dsllms-with-cloudwatch"
+  name    = "build-ocr-with-cloudwatch"
   sources = [
-    "source.amazon-ebs.dsllms_with_cloudwatch"
+    "source.amazon-ebs.ocr_with_cloudwatch"
   ]
 
   # ----------------------------------------------------------------------------
