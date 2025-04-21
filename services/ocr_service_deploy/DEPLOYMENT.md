@@ -165,7 +165,7 @@ This guide provides step-by-step instructions for deploying the OCR service arch
     docker run -d \
       --name ocr-service \
       -p 8000:8000 \
-      --env-file /home/ec2-user/ocr-service/.env \
+      --env-file /home/ec2-user/.env \
       -v /home/ec2-user/ocr-service/output:/app/output \
       --restart always \
       alyssajin/ocr-service:latest

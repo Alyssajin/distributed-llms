@@ -130,13 +130,9 @@ docker run -d --name redis-stack-server -p 6379:6379 redis/redis-stack-server:la
 
 [Your License]
 
-docker run -d \
-  --name ocr-service \
-  -p 8000:8000 \
-  --env-file /home/ec2-user/ocr-service/.env \
-  -v /home/ec2-user/ocr-service/output:/app/output \
-  --restart always \
-  alyssajin/ocr-service:latest
+docker run -d      --name ocr-service      -p 8000:8000      --env-file /home/ec2-user/.env      -v /home/ec2-user/ocr-service/output:/app/output      --restart always      alyssajin/ocr-service:latest
+
+docker run -d --name redis-stack-server -p 6379:6379 --restart always redis/redis-stack-server:latest
 
 
   sudo yum update -y

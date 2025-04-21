@@ -20,6 +20,8 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+
+
 from magic_pdf.data.dataset import PymuDocDataset
 from magic_pdf.model.doc_analyze_by_custom_model import doc_analyze
 from magic_pdf.config.enums import SupportedPdfParseMethod
@@ -27,6 +29,7 @@ from magic_pdf.config.enums import SupportedPdfParseMethod
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 # MongoDB connection configuration (using environment variables for security)
 MONGO_CONNECTION_STRING = os.environ.get('MONGO_CONNECTION_STRING', 'mongodb+srv://alyssajin2019:abkF0hz5gNi56d2c@dsllms-cluster.lgwixwu.mongodb.net/?retryWrites=true&w=majority&appName=dsllms-cluster')
