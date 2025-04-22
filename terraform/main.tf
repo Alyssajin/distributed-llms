@@ -235,7 +235,7 @@ locals {
   ocr_userdata = <<-EOF
     #!/bin/bash
     # Configure environment variables for OCR service
-    cat > /home/ec2-user/.env << 'EOT'
+    cat > /home/ec2-user/.env << EOT
     MONGO_CONNECTION_STRING=mongodb+srv://username:password@your-cluster.mongodb.net/?retryWrites=true&w=majority
     MONGO_DB_NAME=ocr_service
     MONGO_COLLECTION_NAME=documents
