@@ -99,19 +99,9 @@ build {
       "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a stop",
       "sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a start -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -m ec2",
 
-      # 7) Create a startup script for the OCR service
-      "cat > /home/ec2-user/start-ocr-service.sh << 'EOF'
-#!/bin/bash
-docker pull alyssajin/ocr-service:latest
-docker rm -f ocr-service 2>/dev/null || true
-docker run -d \\\\
-  --name ocr-service \\\\
-  -p 8000:8000 \\\\
-  --env-file /home/ec2-user/.env \\\\
-  -v /home/ec2-user/ocr-service/output:/app/output \\\\
-  --restart always \\\\
-  alyssajin/ocr-service:latest
-EOF",
+      # 7) Create a startup script for the OCR service - using \ to escape newlines
+      "cat > /home/ec2-user/start-ocr-service.sh << 'EOF'\n#!/bin/bash\ndocker pull alyssajin/ocr-service:latest\ndocker rm -f ocr-service 2>/dev/null || true\ndocker run -d \\\n  --name ocr-service \\\n  -p 8000:8000 \\\n  --env-file /home/ec2-user/.env \\\n  -v /home/ec2-user/ocr-service/output:/app/output \\\n  --restart always \\\n  alyssajin/ocr-service:latest\nEOF",
+      
       "chmod +x /home/ec2-user/start-ocr-service.sh",
       
       # 8) Add crontab entry to run the script at reboot
