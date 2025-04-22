@@ -104,12 +104,12 @@ build {
 #!/bin/bash
 docker pull alyssajin/ocr-service:latest
 docker rm -f ocr-service 2>/dev/null || true
-docker run -d \\
-  --name ocr-service \\
-  -p 8000:8000 \\
-  --env-file /home/ec2-user/.env \\
-  -v /home/ec2-user/ocr-service/output:/app/output \\
-  --restart always \\
+docker run -d \\\\
+  --name ocr-service \\\\
+  -p 8000:8000 \\\\
+  --env-file /home/ec2-user/.env \\\\
+  -v /home/ec2-user/ocr-service/output:/app/output \\\\
+  --restart always \\\\
   alyssajin/ocr-service:latest
 EOF",
       "chmod +x /home/ec2-user/start-ocr-service.sh",
