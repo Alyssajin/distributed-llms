@@ -123,6 +123,11 @@ The CloudWatch agent is configured to collect:
    terraform output alb_dns_name
    ```
 
+5. Destroy
+   ```bash
+   terraform destroy
+   ```
+
 ### API Endpoints
 
 The OCR service exposes the following endpoints:

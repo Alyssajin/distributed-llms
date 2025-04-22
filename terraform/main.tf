@@ -115,8 +115,8 @@ resource "aws_security_group" "ec2_ocr_sg" {
 
   # Allow public traffic on 80 to reach ALB
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8000
+    to_port     = 8000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -213,7 +213,7 @@ resource "aws_lb_target_group" "ocr_tg" {
 
 resource "aws_lb_listener" "ocr_http_listener" {
   load_balancer_arn = aws_lb.ocr_alb.arn
-  port              = "80"
+  port              = "8000"
   protocol          = "HTTP"
 
   default_action {
