@@ -29,6 +29,13 @@ source "amazon-ebs" "ocr_with_cloudwatch" {
   ami_name         = "ocr-with-cloudwatch-{{timestamp}}"
   ami_description  = "Pre-baked AMI with OCR service, Docker and CloudWatch agent"
 
+  launch_block_device_mappings {
+      device_name = "/dev/xvda"
+      volume_size = 30
+      volume_type = "gp2"
+      delete_on_termination = true
+    }
+    
   tags = {
     Name = "ocr-with-cloudwatch"
   }
