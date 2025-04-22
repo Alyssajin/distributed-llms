@@ -36,6 +36,12 @@ build {
   # Install Docker and run Redis
   provisioner "shell" {
     inline = [
+      # Handle yum lock issue
+      "sudo pkill -9 yum || true",
+      "sudo rm -f /var/run/yum.pid || true", 
+      "sudo rm -f /var/lib/rpm/.rpm.lock || true",
+      "sleep 5",
+      
       # Update system
       "sudo yum update -y",
       
@@ -45,16 +51,16 @@ build {
       "sudo systemctl enable docker",
       "sudo usermod -a -G docker ec2-user",
       
-      # Create startup script
+      # Create startup script - use sudo for Docker
       "echo '#!/bin/bash' > /home/ec2-user/start-redis.sh",
-      "echo 'docker run -d --name redis-server -p 6379:6379 --restart always redis/redis-stack-server:latest' >> /home/ec2-user/start-redis.sh",
+      "echo 'sudo docker run -d --name redis-server -p 6379:6379 --restart always redis/redis-stack-server:latest' >> /home/ec2-user/start-redis.sh",
       "chmod +x /home/ec2-user/start-redis.sh",
       
       # Add to crontab to start on boot
       "(crontab -l 2>/dev/null; echo '@reboot /home/ec2-user/start-redis.sh') | crontab -",
       
-      # Run Redis
-      "/home/ec2-user/start-redis.sh"
+      # Run Redis with sudo
+      "sudo /home/ec2-user/start-redis.sh"
     ]
   }
 }

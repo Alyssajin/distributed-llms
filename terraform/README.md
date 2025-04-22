@@ -36,6 +36,7 @@ The OCR Service AMI contains:
 - Default configuration
 
 ```bash
+packer init ami_ocr.pkr.hcl
 packer build ami_ocr.pkr.hcl
 ```
 
@@ -47,6 +48,7 @@ The Redis AMI contains:
 - CloudWatch agent for monitoring
 
 ```bash
+packer init ami_redis.pkr.hcl
 packer build ami_redis.pkr.hcl
 ```
 
